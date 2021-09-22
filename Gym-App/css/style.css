@@ -1,0 +1,148 @@
+body{
+    background-color: rgb(253, 252, 252) !important;
+}
+
+.sign-up{
+    margin: auto !important;
+    width: 55%;
+    padding: 64px;
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+
+.sign-h1{
+    margin: auto !important;
+    width: 55%;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    background-color: black;
+}
+.sign-up .form-group{
+    font-size: 16px;
+    font-family: monospace;
+}
+.sign-up input{
+    border-radius: 0px;
+}
+.sign-up button{
+    float: right;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 0px;
+    color: white;
+    width: 32%;
+    font-family: monospace; 
+}
+
+.sign-up button:hover{
+    background-color: white;
+    color: black;
+}
+.sign-up #email{
+    text-transform: lowercase;
+}
+
+
+#clock {
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	background-color: lightgrey;
+	margin: auto;
+}
+
+#seconds {
+	display: block;
+	width: 100%;
+	margin: auto;
+	padding-top: 23px;
+	text-align: center;
+	font-size: 72px;
+}
+
+#gif{
+    margin: auto;
+}
+#Exercise{
+    text-align: center;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    margin: 14px;
+}
+
+.btn-exercise{
+    margin: auto !important;
+    display: table;
+}
+.home{
+    text-align: center;
+    margin: 35px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 19px;
+}
+
+.btn-exercise a{
+    border: 2px solid;
+    border-radius: 0px;
+    padding: 14px;
+    margin: 18px;
+    color: #28a745;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.btn-exercise a:hover{
+    background-color: #28a745;
+    color: white;
+}
+
+.login{
+    margin: auto !important;
+    width: 55%;
+    padding: 64px;
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+.login-h1{
+    margin: auto !important;
+    width: 55%;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    background-color: black;
+    text-transform: uppercase;
+}
+.login input #login_username{
+    text-transform: lowercase;
+}
+.login .form-group{
+    font-family: monospace;
+}
+.login input{
+    border-radius: 0px;
+}
+
+.login button{
+    float: right;
+    width: 28%;
+    border-radius: 0px;
+    background-color: green;
+    color: white;
+    border: 0px;
+    padding: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: revert;
+}
+
+.swal2-popup{
+    background-color: rgb(241, 241, 241) !important;
+}
+.swal2-title{
+    color: #f27474 !important;
+}
