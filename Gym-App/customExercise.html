@@ -38,71 +38,102 @@
     </div>
 
     <div class="row">
-      <img src="Images/exercise.gif" id="imgid" alt="" />
+      <img src="" id="imgid" alt="" />
     </div>
 
     <script>
-      timeLeft = 10;
-      restTimes = 6;
+      // customRestleft = 6;
+      // customTimeleft = 10;
+      let arrTimer = [];
+      let arrRest = [];
+      let num = 0;
+      let get = JSON.parse(localStorage.getItem("Exercise"));
 
-      function countdown() {
-        //     timeLeft--;
-        //     document.getElementById("seconds").innerHTML = timeLeft;
-        //     if (timeLeft > 0) {
-        //       setTimeout(countdown, 1000);
-        //       document.getElementById("Exercise").innerHTML = "EXERCISE STARTED";
+      let exercise_id = JSON.parse(localStorage.getItem("selectedExercise"));
+      for (let i = 0; i < exercise_id.length; i++) {
+        let filt = get.filter((x) => x.id === exercise_id[i].id);
+        filt.map((y) => arrTimer.push(y.timer));
+        filt.map((y) => arrRest.push(y.rest));
+      }
 
-        //     }
-        //     if (timeLeft <= 0) {
+      function customCountdown() {
+        // console.log(arrTimer);
 
-        //       rest();
-        //     }
+        // var counter = 10;
 
-        var counter = 10;
+        console.log("Array Timer : " + arrTimer[num]);
+
+        document.getElementById("imgid").src = "Images/exercise.gif";
+        // var counter = 10;
         var timeCountdown = setInterval(function () {
-          console.log(counter);
+          // debugger
+          console.log(arrTimer[num]);
           document.getElementById("Exercise").innerHTML = "EXERCISE STARTED";
-          document.getElementById("seconds").innerHTML = counter;
-          counter--;
+          document.getElementById("seconds").innerHTML = arrTimer[num];
+          arrTimer[num]--;
 
-          if (counter === 0) {
+          if (arrTimer[num] === 0) {
+            // num+1;
             clearInterval(timeCountdown);
-            rest();
+            // setTimeout(customCountdown, 2000);
+
+            customRest();
           }
         }, 1000);
       }
-      setTimeout(countdown, 100);
 
-      function rest() {
-        var rest = 5;
+      setTimeout(customCountdown, 2000);
+
+      function customRest() {
+        // var rest = 5;
         var restCountdown = setInterval(function () {
-          console.log(rest);
+          console.log(arrRest[num]);
           document.getElementById("Exercise").innerHTML = "REST";
-          document.getElementById("seconds").innerHTML = rest;
+          document.getElementById("seconds").innerHTML = arrRest[num];
           document.getElementById("imgid").src = "Images/rest.Jpg";
 
-          rest--;
-          if (rest === 0) {
-           
-          document.getElementById("Exercise").innerHTML = "REST";
+          arrRest[num]--;
+          if (arrRest[num] === 0) {
+            document.getElementById("Exercise").innerHTML = "REST";
             clearInterval(restCountdown);
-            window.location.href = "Home.html";
+            num++;
+            // debugger
+            console.log({arrRest:arrRest.length});
+            console.log({num});
+            if (num !== arrRest.length) {
+             
+              setTimeout(customCountdown, 2000);
+              // customCountdown();
+            }
+            else{
+            console.log("Completed");
+            document.getElementById("Exercise").innerHTML = "ALL DONE FOR TODAY !!";
+            document.getElementById("seconds").innerHTML = String( 0 );
+            setTimeout(() => {
+              window.location.href = "addExercise.html";
+              
+            }, 2000);
+
+            }
+
           }
+         
         }, 1000);
 
-        // restTimes--;
-        // document.getElementById("seconds").innerHTML = restTimes;
-        // if (restTimes > 0) {
-        //   setTimeout(rest, 1000);
+        // arrRest[0]--;
+        // document.getElementById("seconds").innerHTML = arrRest[0];
+        // if (arrRest[0] > 0) {
+        //   setTimeout(customRest, 1000);
         //   document.getElementById("Exercise").innerHTML = "Rest";
         //   document.getElementById("imgid").src = "Images/rest.Jpg";
         // }
-        // if (restTimes <= 0) {
+        // if (arrRest[0] <= 0) {
         //   // setTimeout(rest,1000);
         //   document.getElementById("Exercise").innerHTML = "Completed";
-        //   window.location.href = "Home.html";
+        //   window.location.href = "addExercise.html";
         // }
       }
+      // setTimeout(customRest, 1000);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

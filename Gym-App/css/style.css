@@ -61,7 +61,7 @@ body{
 	font-size: 72px;
 }
 
-#gif{
+#imgid{
     margin: auto;
 }
 #Exercise{
@@ -145,4 +145,91 @@ body{
 }
 .swal2-title{
     color: #f27474 !important;
+}
+.add-form .form-control{
+    width: 91%;
+    border-radius: 0px;
+    margin: 35px
+}
+.add-form .btn{
+    width: 66%;
+    border-radius: 0px;
+    margin: 35px;
+    border: 0px;
+    border-radius: 0px;
+    background-color: rgb(219, 189, 18) !important;
+    color: white;
+    font-weight: 700;
+}
+.add-form .btn:hover{
+    background-color: white !important;
+    color: rgb(219, 189, 18) !important;
+    border: 1px solid rgb(219, 189, 18);
+}
+
+#newTable table{
+    margin: 35px;
+}
+
+#newTable table thead{
+    width: 100%;
+}
+#newTable table thead tr th{
+
+    width: 1%;
+    text-transform: uppercase;
+    border: 1px solid lightgrey;
+    padding: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-family: monospace;
+}
+
+
+#newTable table tbody tr td{
+    border: 1px solid lightgrey;
+    padding: 15px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: monospace;
+}
+
+#newTable td .btn{
+  
+    width: 50px;
+    
+}
+
+.add-form #restForm, #btn-rest{
+    display: none;
+}
+
+.add-form .check-box{
+    font-size: 21px;
+    font-family: monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 52px;
+}
+.fa-edit{
+    cursor: pointer;
+    font-size: 23px;
+    color: rgb(106, 153, 106);
+ 
+}
+.fa-edit:hover{
+    color: rgb(52, 121, 52);
+}
+
+.fa-trash-alt{
+    cursor: pointer;
+    font-size: 23px;
+    color:  rgb(211, 114, 114) !important;
+}
+.fa-trash-alt:hover{
+    cursor: pointer;
+    font-size: 23px;
+    color:  red !important;
 }

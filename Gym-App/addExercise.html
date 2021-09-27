@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>ADD EXERCISE</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+    crossorigin="anonymous"
+  />
+  <script src="https://use.fontawesome.com/6d64fd73bb.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+  
+    <script>
+      function createTable() {
+  let arr1 = [];
+  document.getElementById("newTable").innerHTML = "";
+  arr1 = JSON.parse(localStorage.getItem("Exercise"));
+  let current_email = JSON.parse(localStorage.getItem("email"));
+  
+  let table = document.createElement("table");
+  let thead = document.createElement("thead");
+  let tbody = document.createElement("tbody");
+  
+  table.appendChild(thead);
+  table.appendChild(tbody);
+  
+  // Adding the entire table to the body tag
+  document.getElementById("newTable").appendChild(table);
+  
+  let row1 = document.createElement("tr");
+  let head1 = document.createElement("th");
+  let head2 = document.createElement("th");
+  let head3 = document.createElement("th");
+  let head4 = document.createElement("th");
+  let head5 = document.createElement("th");
+  
+  head1.innerHTML = "Exercise Name";
+  head2.innerHTML = "Exercise Timer";
+  head3.innerHTML = "Rest time";
+  head4.innerHTML = "Action";
+  head5.innerHTML = "Select";
+  
+  row1.appendChild(head1);
+  row1.appendChild(head2);
+  row1.appendChild(head3);
+  row1.appendChild(head4);
+  row1.appendChild(head5);
+  
+  thead.appendChild(row1);
+  
+  // Button to add Timer
+  
+  // Create and Adding Data in Table Td
+  
+  if (arr1 && arr1.length) {
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i].current_email === current_email) {
+        let row2 = document.createElement("tr");
+        let data1 = document.createElement("td");
+        let data2 = document.createElement("td");
+        let data3 = document.createElement("td");
+        let data4 = document.createElement("td");
+        let data5 = document.createElement("td");
+        
+        var btn = document.createElement("SPAN");
+        btn.type = "button";
+        btn.className = "btn";
+        btn.innerHTML = '<i class="fas fa-edit"></i>';
+        btn.onclick = function addTimer() {
+          let id = arr1[i].id;
+          console.log(id);
+          localStorage.setItem("storeId", JSON.stringify(id));
+          window.location.href = "addTimer.html";
+        };
+
+        var btn1 = document.createElement("SPAN");
+        btn1.type = "button";
+        btn1.className = "btn";
+        btn1.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        btn1.addEventListener("click", function () {
+          deletedArr(arr1[i]);
+        });
+        
+        if (arr1[i].timer && arr1[i].rest) {
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.name = "name";
+          checkbox.value = "value";
+          checkbox.id = "checkbox-id";
+          checkbox.className = "checkbox-table";
+          checkbox.addEventListener("change", function () {
+            let selected_exercise = JSON.parse(
+              localStorage.getItem("selectedExercise")
+              );
+              let start = [];
+            if (this.checked) {
+              let id = {
+                id: arr1[i].id,
+              };
+              
+              start.push(id);
+              
+              if (selected_exercise && selected_exercise.length) {
+                for (let k = 0; k < selected_exercise.length; k++) {
+                  
+                  if(selected_exercise[k].id === id.id){
+                    alert("Already Added !!");
+                    checkbox.checked == true;
+                    return false;
+                  }
+                  
+                }
+                
+                
+                let com = selected_exercise.concat(start);
+                localStorage.setItem("selectedExercise", JSON.stringify(com));
+              }
+              else{
+
+                localStorage.setItem("selectedExercise", JSON.stringify(start));
+              }
+              
+              // console.log(i);
+            } else {
+              // let get1 = JSON.parse(localStorage.getItem("selectExercise"));
+              let index = selected_exercise.findIndex((x) => x.id === arr1[i].id);
+              selected_exercise.splice(index, 1);
+              console.log(index);
+              localStorage.setItem(
+                "selectedExercise",
+                JSON.stringify(selected_exercise)
+                );
+                JSON.parse(localStorage.getItem("selectedExercise"));
+              // console.log("Removed" + i);
+            }
+          });
+          data5.appendChild(checkbox);
+        }
+        
+        data1.innerHTML = arr1[i].value_text;
+        data2.innerHTML = arr1[i].timer;
+        data3.innerHTML = arr1[i].rest;
+        data4.appendChild(btn);
+        data4.appendChild(btn1);
+        
+        row2.appendChild(data1);
+        row2.appendChild(data2);
+        row2.appendChild(data3);
+        row2.appendChild(data4);
+        row2.appendChild(data5);
+        tbody.appendChild(row2);
+      }
+    }
+  }
+  
+  // data3.innerHTML = "<input type='button' value='ADD' id='addBtn' class='addBtn' onclick='show(this)'>"
+}
+window.onload = function(){
+  createTable();
+
+}
+    </script>
+      
+      <div class="container">
+    <h1 class="home">
+       Add New Exercise 
+    </h1>
+
+
+    
+    <div class="row add-form">
+<div class="col-md-8">
+
+    <div class="form-group">
+        
+        <input type="text" name="addExerciseForm" id="addExerciseForm" class="form-control" placeholder="Add New Exercise" aria-describedby="helpId">
+    </div>
+</div>
+<div class="col-md-4">
+  <button type="button" class="btn" onclick="addExercise()">Add</button>
+  <!-- <button type="button" class="btn" onclick="createTable()">Show Exercise</button> -->
+  
+
+</div>
+</div>
+
+<div class="row add-form">
+<div class="col-md-12">
+
+  <button type="button" class="btn" onclick="startExercise()">Start Exercise</button>
+</div>
+</div>
+
+<div id="newTable"></div>
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="js/script.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
